@@ -8,7 +8,7 @@ import java.util.List;
 
 public  class ObjectDAOImpl  implements ObjectDAO {
 
-    private final DataSource<ObjectDTO> dataSource;// = new MemoryDataSource(new Bucket());
+    private final DataSource<ObjectDTO> dataSource;
 
     public ObjectDAOImpl(DataSource dataSource) {
         this.dataSource = dataSource;

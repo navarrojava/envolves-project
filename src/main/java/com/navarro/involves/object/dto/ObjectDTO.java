@@ -6,15 +6,15 @@ import java.util.UUID;
 
 public class ObjectDTO implements Serializable {
 
-    private HashMap<String, String> attibutes;
+    private HashMap<String, String> attributes;
     private UUID uuid;
 
-    public HashMap<String, String> getAttibutes() {
-        return attibutes;
+    public HashMap<String, String> getAttributes() {
+        return attributes;
     }
 
-    public ObjectDTO setAttibutes(HashMap<String, String> attibutes) {
-        this.attibutes = attibutes;
+    public ObjectDTO setAttributes(HashMap<String, String> attributes) {
+        this.attributes = attributes;
         return this;
     }
 
@@ -35,18 +35,18 @@ public class ObjectDTO implements Serializable {
 
         ObjectDTO that = (ObjectDTO) o;
 
-        return attibutes.equals(that.attibutes);
+        return attributes.equals(that.attributes);
 
     }
 
     @Override
     public int hashCode() {
-        return attibutes.hashCode();
+        return attributes.hashCode();
     }
 
     @Override
     public String toString() {
-        return attibutes.toString();
+        return attributes.toString();
     }
 
 

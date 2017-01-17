@@ -37,7 +37,7 @@ public class MemoryDataSource extends DataSource<ObjectDTO> {
         getDefaultBucket()
                 .getObjects()
                 .stream()
-                .filter(o -> o.getAttibutes().get(attribute) != null && o.getAttibutes().get(attribute).equalsIgnoreCase(value))
+                .filter(o -> o.getAttributes().get(attribute) != null && o.getAttributes().get(attribute).equalsIgnoreCase(value))
                 .forEach(objectDTOs::add);
 
         return objectDTOs;
@@ -55,8 +55,8 @@ public class MemoryDataSource extends DataSource<ObjectDTO> {
         Stream<String> objectDTOStream = getDefaultBucket()
                 .getObjects()
                 .stream()
-                .filter(o -> o.getAttibutes().get(key) != null)
-                .map(objectDTO -> objectDTO.getAttibutes().get(key)).distinct();
+                .filter(o -> o.getAttributes().get(key) != null)
+                .map(objectDTO -> objectDTO.getAttributes().get(key)).distinct();
 
         return (int) objectDTOStream.count();
     }

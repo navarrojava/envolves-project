@@ -10,7 +10,6 @@ public class ConsoleWriterImpl implements Writer {
     private static final String WARNING = "\u001B[33m";
 
 
-
     @Override
     public void writeError(String message) {
         System.out.println(ERROR + message);

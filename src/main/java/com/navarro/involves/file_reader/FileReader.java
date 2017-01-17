@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 public interface FileReader {
 
-    Supplier<Stream<String>> readFile(Optional<String> fileName) throws IOException, FileNotFoundException;
     ArrayList<ObjectDTO> mountListObjectsFromFile() throws FileNotFoundException, IOException;
+    Supplier<Stream<String>> readFile(Optional<String> fileName) throws IOException, FileNotFoundException;
     void readFile();
 }

@@ -21,12 +21,12 @@ public class FilterByKeyAndValue extends CommandServiceImpl {
         List<ObjectDTO> filter = objectDAO.filter(queryParams[0], queryParams[1]);
         int size = filter.size();
         if (size > 0) {
-            Set<String> keys = filter.get(0).getAttibutes().keySet();
+            Set<String> keys = filter.get(0).getAttributes().keySet();
 
             w.writeInfo(keys.toString());
 
             for (ObjectDTO objectDTO : filter) {
-                w.writeInfo(objectDTO.getAttibutes().values().toString());
+                w.writeInfo(objectDTO.getAttributes().values().toString());
             }
         }else {
             //TODO create NoOneValueFoundException

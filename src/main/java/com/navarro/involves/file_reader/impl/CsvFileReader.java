@@ -91,7 +91,7 @@ public class CsvFileReader implements FileReader {
         for (int i = 0; i < keys.length; i++) {
             attributes.put(keys[i], values[i]);
         }
-        o.setAttibutes(attributes);
+        o.setAttributes(attributes);
         o.setUuid(UUID.randomUUID());
 
         return o;
