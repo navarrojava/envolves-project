@@ -16,9 +16,9 @@ import java.util.Optional;
 public enum CommandTypes {
 
     COUNT_ALL("count *", new CountAll(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 0),
-    COUNT_DISTINCT("count distinct", new CountDistinct(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())),ConsoleWriterFactory.getInstance()), 1),
-    HELP("help", new Help(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())),ConsoleWriterFactory.getInstance()), 0),
-    FILTER("filter", new FilterByKeyAndValue(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())),ConsoleWriterFactory.getInstance()), 2);
+    COUNT_DISTINCT("count distinct", new CountDistinct(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 1),
+    HELP("help", new Help(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 0),
+    FILTER("filter", new FilterByKeyAndValue(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 2);
 
     private String command;
     private final CommandService commandService;
@@ -31,6 +31,7 @@ public enum CommandTypes {
     }
 
     public String getLiterals() {
+
         return command;
     }
 
@@ -38,27 +39,30 @@ public enum CommandTypes {
 
         Optional<String[]> queryParamsFromConsole = queryParams(commandFromConsole);
 
-        if (proced(queryParamsFromConsole)) {
+        if (matchQueryParams(queryParamsFromConsole)) {
             commandService.execute(queryParamsFromConsole.isPresent() ? queryParamsFromConsole.get() : null);
         } else {
             throw new QueryParamOutOfBoundException(queryParams, queryParamsFromConsole.isPresent() ? queryParamsFromConsole.get().length : 0);
         }
     }
 
-    private boolean proced(Optional<String[]> s) {
+    private boolean matchQueryParams(Optional<String[]> s) {
 
         return ((queryParams == 0) || !s.isPresent()) ||
                 (s.isPresent() && s.get().length == queryParams);
     }
 
     public CommandTypes command(String command) {
-        return command.contains(COUNT_ALL.getLiterals()) ? COUNT_ALL :
+        return
+                command.contains(COUNT_ALL.getLiterals()) ? COUNT_ALL :
                 command.contains(COUNT_DISTINCT.getLiterals()) ? COUNT_DISTINCT :
-                        command.contains(FILTER.getLiterals()) ? FILTER :
-                                null;
+                command.contains(FILTER.getLiterals()) ? FILTER :
+                command.contains(HELP.getLiterals()) ? HELP :
+                null;
     }
 
     private Optional<String[]> queryParams(String commandConsole) {
+
         String trim = commandConsole.replace(this.getLiterals(), "").trim();
         return trim.isEmpty() ? Optional.empty() : Optional.of(trim.split(" "));
     }

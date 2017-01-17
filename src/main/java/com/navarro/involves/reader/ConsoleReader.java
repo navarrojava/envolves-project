@@ -21,6 +21,7 @@ public class ConsoleReader implements Reader {
 
     @Override
     public void startRead() {
+
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String s;
         try {
