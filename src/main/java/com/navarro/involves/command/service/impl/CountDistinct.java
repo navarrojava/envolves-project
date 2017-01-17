@@ -8,7 +8,7 @@ import com.navarro.involves.writter.impl.ConsoleWriterImpl;
 public class CountDistinct extends CommandServiceImpl {
 
 
-    public CountDistinct(ObjectDAO   objectDAO) {
+    public CountDistinct(ObjectDAO objectDAO) {
         super(objectDAO);
     }
 
@@ -16,11 +16,7 @@ public class CountDistinct extends CommandServiceImpl {
     public void execute(String... queryParams) {
         Writer w = new ConsoleWriterImpl();
         String[] strings = super.queryParamCommand(CommandTypes.COUNT_DISTINCT.getLiterals(), queryParams[0]);
-        if (strings.length == 1){
 
-            w.writeInfo(String.valueOf(objectDAO.countDistinct(strings[0])));
-        } else{
-            System.out.println("Command not found.....");
-        }
+        w.writeInfo(String.valueOf(objectDAO.countDistinct(strings[0])));
     }
 }

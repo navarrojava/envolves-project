@@ -16,7 +16,6 @@ public class CommandServiceImpl implements CommandService {
         this.objectDAO = objectDAO;
     }
 
-
     @Override
     public void execute(String... queryParams) {
 
