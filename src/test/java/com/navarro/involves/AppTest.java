@@ -1,38 +1,19 @@
 package com.navarro.involves;
 
+import com.navarro.involves.datasource.BucketFactory;
+import com.navarro.involves.datasource.impl.MemoryDataSource;
+import com.navarro.involves.file_reader.FileReader;
+import com.navarro.involves.file_reader.impl.CsvFileReader;
+import com.navarro.involves.object.dao.impl.ObjectDAOImpl;
+import com.navarro.involves.object.dao.interfaces.ObjectDAO;
+
 public class AppTest extends MicroTests {
 
 
+
     public void testApp(){
-        String s = null;
-        System.out.println("running tests");
-        super.assertNotNull(s);
+//        String s = null;
+//        super.assertNotNull(s);
     }
 
-   /* public void testApp(){
-        System.out.println("running tests....");
-        throw new Error("Error... testApp");
-    }
-
-    public void testApp2(){
-        System.out.println("running tests....");
-        throw new Error("Error... testApp");
-    }
-
-    public void testApp3(){
-        System.out.println("running tests....");
-        throw new Error("Error... testApp");
-    }
-
-    public void testApp4(){
-        System.out.println("running tests....");
-        throw new Error("Error... testApp");
-    }
-
-    public void testApp5(){
-        System.out.println("running tests 5 ....");
-
-    }
-
-*/
 }

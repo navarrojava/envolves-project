@@ -1,25 +1,25 @@
 package com.navarro.involves;
 
-abstract class MicroTests {
+public abstract class MicroTests {
 
-    void assertTrue(boolean condition) {
+    public void assertTrue(boolean condition) {
         if (!condition)
             executeError(String.format("expected %s and found %s", condition, !condition));
     }
 
-    void assertEquals(String value, String expected) {
+    public void assertEquals(String value, String expected) {
         if (!value.equals(expected)) {
             executeError(String.format("expected %s and found %s", expected, value));
         }
     }
 
-    void assertEquals(int value, int expected) {
+    public void assertEquals(int value, int expected) {
         if (!(value == expected)) {
             executeError(String.format("expected %d and found %d", expected, value));
         }
     }
 
-    void assertNotNull(Object o){
+    public void assertNotNull(Object o){
         if(o == null){
             executeError("expected  not null and found null");
         }
