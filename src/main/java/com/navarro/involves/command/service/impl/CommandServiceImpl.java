@@ -5,15 +5,18 @@ import com.navarro.involves.command.service.CommandService;
 import com.navarro.involves.exception.CommandNotFoundException;
 import com.navarro.involves.exception.QueryParamOutOfBoundException;
 import com.navarro.involves.object.dao.interfaces.ObjectDAO;
+import com.navarro.involves.writter.Writer;
 
 import java.util.Optional;
 
 public class CommandServiceImpl implements CommandService {
 
     final ObjectDAO objectDAO;
+    final Writer writer;
 
-    public CommandServiceImpl(ObjectDAO objectDAO) {
+    public CommandServiceImpl(ObjectDAO objectDAO, Writer writer) {
         this.objectDAO = objectDAO;
+        this.writer = writer;
     }
 
     @Override

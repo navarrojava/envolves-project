@@ -4,18 +4,21 @@ import com.navarro.involves.command.service.CommandService;
 import com.navarro.involves.command.service.impl.CountAll;
 import com.navarro.involves.command.service.impl.CountDistinct;
 import com.navarro.involves.command.service.impl.FilterByKeyAndValue;
+import com.navarro.involves.command.service.impl.Help;
 import com.navarro.involves.datasource.BucketFactory;
 import com.navarro.involves.datasource.impl.MemoryDataSource;
 import com.navarro.involves.exception.QueryParamOutOfBoundException;
 import com.navarro.involves.object.dao.impl.ObjectDAOImpl;
+import com.navarro.involves.writter.impl.ConsoleWriterFactory;
 
 import java.util.Optional;
 
 public enum CommandTypes {
 
-    COUNT_ALL("count *", new CountAll(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance()))), 0),
-    COUNT_DISTINCT("count distinct", new CountDistinct(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance()))), 1),
-    FILTER("filter", new FilterByKeyAndValue(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance()))), 2);
+    COUNT_ALL("count *", new CountAll(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 0),
+    COUNT_DISTINCT("count distinct", new CountDistinct(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())),ConsoleWriterFactory.getInstance()), 1),
+    HELP("help", new Help(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())),ConsoleWriterFactory.getInstance()), 0),
+    FILTER("filter", new FilterByKeyAndValue(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())),ConsoleWriterFactory.getInstance()), 2);
 
     private String command;
     private final CommandService commandService;
