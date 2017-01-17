@@ -1,7 +1,7 @@
 package com.navarro.involves.command.service.impl;
 
-import com.navarro.involves.command.service.CommandService;
 import com.navarro.involves.command.enums.CommandTypes;
+import com.navarro.involves.command.service.CommandService;
 import com.navarro.involves.exception.CommandNotFoundException;
 import com.navarro.involves.exception.QueryParamOutOfBoundException;
 import com.navarro.involves.object.dao.interfaces.ObjectDAO;

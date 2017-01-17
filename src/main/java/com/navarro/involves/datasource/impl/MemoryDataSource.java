@@ -56,7 +56,9 @@ public class MemoryDataSource extends DataSource<ObjectDTO> {
                 .getObjects()
                 .stream()
                 .filter(o -> o.getAttributes().get(key) != null)
-                .map(objectDTO -> objectDTO.getAttributes().get(key)).distinct();
+                .map(objectDTO -> objectDTO.getAttributes().get(key))
+                .filter(s -> !s.isEmpty())
+                .distinct();
 
         return (int) objectDTOStream.count();
     }
