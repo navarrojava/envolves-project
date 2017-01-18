@@ -2,7 +2,7 @@ package com.navarro.involves.reader;
 
 import com.navarro.involves.command.service.CommandService;
 import com.navarro.involves.exception.CommandNotFoundException;
-import com.navarro.involves.exception.QueryParamOutOfBoundException;
+import com.navarro.involves.exception.QueryParamsNumberNotMatchException;
 import com.navarro.involves.writter.Writer;
 
 import java.io.BufferedReader;
@@ -28,7 +28,7 @@ public class ConsoleReader implements Reader {
             while ((s = in.readLine()) != null) {
                 try {
                     commandService.matchCommand(s);
-                } catch (CommandNotFoundException | QueryParamOutOfBoundException e) {
+                } catch (CommandNotFoundException | QueryParamsNumberNotMatchException e) {
                     writer.writeError(e.getMessage());
                 }
             }

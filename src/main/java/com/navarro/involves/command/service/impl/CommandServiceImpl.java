@@ -3,7 +3,7 @@ package com.navarro.involves.command.service.impl;
 import com.navarro.involves.command.enums.CommandTypes;
 import com.navarro.involves.command.service.CommandService;
 import com.navarro.involves.exception.CommandNotFoundException;
-import com.navarro.involves.exception.QueryParamOutOfBoundException;
+import com.navarro.involves.exception.QueryParamsNumberNotMatchException;
 import com.navarro.involves.object.dao.interfaces.ObjectDAO;
 import com.navarro.involves.writter.Writer;
 
@@ -27,7 +27,7 @@ public class CommandServiceImpl implements CommandService {
 
 
     @Override
-    public void matchCommand(String commandFromConsole) throws CommandNotFoundException, QueryParamOutOfBoundException {
+    public void matchCommand(String commandFromConsole) throws CommandNotFoundException, QueryParamsNumberNotMatchException {
 
         CommandTypes[] values = CommandTypes.values();
         Optional<CommandTypes> command = Optional.ofNullable(values[0].command(commandFromConsole));

@@ -7,7 +7,7 @@ import com.navarro.involves.command.service.impl.FilterByKeyAndValue;
 import com.navarro.involves.command.service.impl.Help;
 import com.navarro.involves.datasource.BucketFactory;
 import com.navarro.involves.datasource.impl.MemoryDataSource;
-import com.navarro.involves.exception.QueryParamOutOfBoundException;
+import com.navarro.involves.exception.QueryParamsNumberNotMatchException;
 import com.navarro.involves.object.dao.impl.ObjectDAOImpl;
 import com.navarro.involves.writter.impl.ConsoleWriterFactory;
 
@@ -35,14 +35,14 @@ public enum CommandTypes {
         return command;
     }
 
-    public void execute(String commandFromConsole) throws QueryParamOutOfBoundException {
+    public void execute(String commandFromConsole) throws QueryParamsNumberNotMatchException {
 
         Optional<String[]> queryParamsFromConsole = queryParams(commandFromConsole);
 
         if (matchQueryParams(queryParamsFromConsole)) {
             commandService.execute(queryParamsFromConsole.isPresent() ? queryParamsFromConsole.get() : null);
         } else {
-            throw new QueryParamOutOfBoundException(queryParams, queryParamsFromConsole.isPresent() ? queryParamsFromConsole.get().length : 0);
+            throw new QueryParamsNumberNotMatchException(queryParams, queryParamsFromConsole.isPresent() ? queryParamsFromConsole.get().length : 0);
         }
     }
 
