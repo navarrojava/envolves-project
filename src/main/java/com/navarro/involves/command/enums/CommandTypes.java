@@ -48,7 +48,7 @@ public enum CommandTypes {
 
     private boolean matchQueryParams(Optional<String[]> s) {
 
-        return ((queryParams == 0) || !s.isPresent()) ||
+        return ((queryParams == 0) && !s.isPresent()) ||
                 (s.isPresent() && s.get().length == queryParams);
     }
 
