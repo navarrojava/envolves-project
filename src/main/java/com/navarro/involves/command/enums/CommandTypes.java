@@ -17,8 +17,8 @@ public enum CommandTypes {
 
     COUNT_ALL("count *", new CountAll(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 0),
     COUNT_DISTINCT("count distinct", new CountDistinct(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 1),
-    HELP("help", new Help(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 0),
-    FILTER("filter", new FilterByKeyAndValue(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 2);
+    FILTER("filter", new FilterByKeyAndValue(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 2),
+    HELP("help", new Help(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 0);
 
     private String literal;
     private final CommandService commandService;
