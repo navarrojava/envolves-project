@@ -20,7 +20,7 @@ public class App {
     public static void main(String[] args) throws IOException {
 
         final Optional<String> jvmArgsFilename = Optional.ofNullable(System.getProperty(SystemConstants.JVM_ARGS_CSV_FILENAME_NAME));
-        final String fileName = jvmArgsFilename.isPresent() ? jvmArgsFilename.get() : SystemConstants.DEFAULT_CSV_FILENAME_NAME;
+        final String fileName = jvmArgsFilename.orElse(SystemConstants.DEFAULT_CSV_FILENAME_NAME);
 
         FileReader csvFileReader = new CsvFileReader();
         Reader consoleReader = new ConsoleReader(new CommandServiceImpl(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), new ConsoleWriterImpl());

@@ -16,7 +16,7 @@ import java.util.Optional;
 public class CsvFileReaderTest extends MicroTests {
 
     private final Optional<String> jvmArgsFilename = Optional.ofNullable(System.getProperty(SystemConstants.JVM_ARGS_CSV_FILENAME_NAME));
-    private final String fileName = jvmArgsFilename.isPresent() ? jvmArgsFilename.get() : SystemConstants.DEFAULT_CSV_FILENAME_NAME;
+    private final String fileName = jvmArgsFilename.orElse(SystemConstants.DEFAULT_CSV_FILENAME_NAME);
     private final FileReader fileReader = new CsvFileReader();
 
 

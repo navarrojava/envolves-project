@@ -40,7 +40,7 @@ public enum CommandTypes {
         Optional<String[]> queryParamsFromConsole = queryParams(commandFromConsole);
 
         if (matchQueryParams(queryParamsFromConsole)) {
-            commandService.execute(queryParamsFromConsole.isPresent() ? queryParamsFromConsole.get() : null);
+            commandService.execute(queryParamsFromConsole.orElse(null));
         } else {
             throw new QueryParamsNumberNotMatchException(queryParams, queryParamsFromConsole.isPresent() ? queryParamsFromConsole.get().length : 0);
         }

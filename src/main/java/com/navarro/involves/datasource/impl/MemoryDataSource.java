@@ -23,7 +23,7 @@ public class MemoryDataSource extends DataSource<ObjectDTO> {
 
     private Bucket getBucketByName(String name) {
         Optional<Bucket> bucket = buckets.stream().filter(o -> o.getName().equals(name)).findFirst();
-        return bucket.isPresent() ? bucket.get() : null;
+        return bucket.orElse(null);
     }
 
     private Bucket getDefaultBucket() {

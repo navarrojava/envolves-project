@@ -73,9 +73,7 @@ public class CsvFileReader implements FileReader {
 
         URL resource = getClass().getClassLoader().getResource(fileName);
         Optional<String> path = Optional.ofNullable(resource != null ? resource.getPath() : null);
-        return path.isPresent() ?
-                path :
-                Optional.empty();
+        return Optional.ofNullable(path.orElse(null));
     }
 
     private ObjectDTO mountObject(String[] keys, String[] values) {
@@ -92,6 +90,7 @@ public class CsvFileReader implements FileReader {
     }
 
     private String[] getKeys(Optional<String> lineThatContainKeys) {
+//        return lineThatContainKeys.isPresent() ? lineThatContainKeys.get().split(Pattern.quote(",")) : new String[0];
         return lineThatContainKeys.isPresent() ? lineThatContainKeys.get().split(Pattern.quote(",")) : new String[0];
     }
 

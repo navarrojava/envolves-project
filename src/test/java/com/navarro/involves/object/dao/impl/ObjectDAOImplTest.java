@@ -18,7 +18,7 @@ public class ObjectDAOImplTest extends MicroTests {
     private static final String VALUE_TWO = "line_one_attr_two";
 
     private final Optional<String> jvmArgsFilename = Optional.ofNullable(System.getProperty(SystemConstants.JVM_ARGS_CSV_FILENAME_NAME));
-    private final String fileName = jvmArgsFilename.isPresent() ? jvmArgsFilename.get() : SystemConstants.DEFAULT_CSV_FILENAME_NAME;
+    private final String fileName = jvmArgsFilename.orElse(SystemConstants.DEFAULT_CSV_FILENAME_NAME);
     private final FileReader fileReader = new CsvFileReader();
     private final ObjectDAO objectDAO = new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance()));
 
