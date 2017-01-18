@@ -11,8 +11,8 @@ import java.util.Optional;
 
 public class CommandServiceImpl implements CommandService {
 
-     final ObjectDAO objectDAO;
-     final Writer writer;
+    final ObjectDAO objectDAO;
+    final Writer writer;
 
     public CommandServiceImpl(ObjectDAO objectDAO, Writer writer) {
         this.objectDAO = objectDAO;
