@@ -24,8 +24,6 @@ public class CommandServiceImpl implements CommandService {
 
     }
 
-
-
     @Override
     public void matchCommand(String commandFromConsole) throws CommandNotFoundException, QueryParamsNumberNotMatchException {
 

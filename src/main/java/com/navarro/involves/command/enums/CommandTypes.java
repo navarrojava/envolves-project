@@ -20,19 +20,19 @@ public enum CommandTypes {
     HELP("help", new Help(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 0),
     FILTER("filter", new FilterByKeyAndValue(new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance())), ConsoleWriterFactory.getInstance()), 2);
 
-    private String command;
+    private String literal;
     private final CommandService commandService;
     private final int queryParams;
 
-    CommandTypes(String s, CommandService commandService, int queryParams) {
+    CommandTypes(String literal, CommandService commandService, int queryParams) {
         this.commandService = commandService;
-        this.command = s;
+        this.literal = literal;
         this.queryParams = queryParams;
     }
 
     public String getLiterals() {
 
-        return command;
+        return literal;
     }
 
     public void execute(String commandFromConsole) throws QueryParamsNumberNotMatchException {
