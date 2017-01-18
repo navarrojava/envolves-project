@@ -3,7 +3,7 @@ package com.navarro.involves.exception;
 
 public class CommandNotFoundException extends Throwable {
 
-    private static final String MESSAGE_NOT_FOUND = "The command typed \"%s\" don`t mach any available command ";
+    private static final String MESSAGE_NOT_FOUND = "The command typed \"%s\" don`t match any available command ";
 
     public CommandNotFoundException() {
         super();

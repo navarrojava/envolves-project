@@ -23,21 +23,16 @@ import java.util.stream.Stream;
 
 public class CsvFileReader implements FileReader {
 
-    private Optional<String> csvDocumentJVMArgsName = Optional.ofNullable(System.getProperty(SystemConstants.JVM_ARGS_CSV_FILENAME_NAME));
-    private String defaultFileName = csvDocumentJVMArgsName.isPresent() ? csvDocumentJVMArgsName.get() : SystemConstants.DEFAULT_CSV_FILENAME_NAME;
 
-    @Override
-    public Supplier<Stream<String>> readFile(Optional<String> csvFileName) throws FileNotFoundException, IOException {
+    public Supplier<Stream<String>> readFile(String csvFileName) throws FileNotFoundException, IOException {
 
-        String csvFileNameToRead = csvFileName.isPresent() ? csvFileName.get() : defaultFileName;
         Supplier<Stream<String>> documentStream;
 
-
-        if (getFilePath(csvFileNameToRead).isPresent()) {
+        if (getFilePath(csvFileName).isPresent()) {
             documentStream = () -> {
                 Stream<String> lines = null;
                 try {
-                    lines = Files.lines(Paths.get(getFilePath(csvFileNameToRead).get()));
+                    lines = Files.lines(Paths.get(getFilePath(csvFileName).get()));
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -45,14 +40,14 @@ public class CsvFileReader implements FileReader {
                 return lines;
             };
         } else {
-            throw new FileNotFoundException(csvFileNameToRead);
+            throw new FileNotFoundException(csvFileName);
         }
         return documentStream;
     }
 
 
-    public ArrayList<ObjectDTO> mountListObjectsFromFile() throws FileNotFoundException, IOException {
-        Supplier<Stream<String>> documentStream = readFile(Optional.empty());
+    public ArrayList<ObjectDTO> mountListObjectsFromFile(String filename) throws FileNotFoundException, IOException {
+        Supplier<Stream<String>> documentStream = readFile(filename);
         Optional<String> lineThatContainKeys = documentStream.get().findFirst();
         String[] keys = getKeys(lineThatContainKeys);
 
@@ -66,14 +61,13 @@ public class CsvFileReader implements FileReader {
     }
 
     @Override
-    public void readFile() {
+    public void readFileAndPopulateDataSource(String fileName) {
         try {
-            new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance().setObjects(mountListObjectsFromFile())));
+            new ObjectDAOImpl(new MemoryDataSource(BucketFactory.getInstance().setObjects(mountListObjectsFromFile(fileName))));
         } catch (FileNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
-
 
     private Optional<String> getFilePath(String fileName) {
 
