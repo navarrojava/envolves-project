@@ -90,7 +90,6 @@ public class CsvFileReader implements FileReader {
     }
 
     private String[] getKeys(Optional<String> lineThatContainKeys) {
-//        return lineThatContainKeys.isPresent() ? lineThatContainKeys.get().split(Pattern.quote(",")) : new String[0];
         return lineThatContainKeys.isPresent() ? lineThatContainKeys.get().split(Pattern.quote(",")) : new String[0];
     }
 
